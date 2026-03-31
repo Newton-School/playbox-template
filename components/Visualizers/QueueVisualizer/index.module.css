@@ -1,0 +1,238 @@
+/* QueueVisualizer CSS Module using Grauity design tokens */
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: var(--spacing-16px) var(--spacing-16px) var(--spacing-40px);
+}
+
+.header {
+  margin-bottom: var(--spacing-32px);
+}
+
+.title {
+  margin-bottom: var(--spacing-16px);
+}
+
+.description {
+  color: var(--text-emphasis-secondary-default);
+}
+
+.controls {
+  background-color: var(--bg-subtle-secondary-default);
+  border-radius: var(--corner-radius-8px);
+  padding: var(--spacing-24px);
+  margin-bottom: var(--spacing-32px);
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--spacing-16px);
+}
+
+.inputField {
+  flex: 1;
+  min-width: 12rem;
+}
+
+.visualization {
+  background-color: var(--bg-subtle-primary-default);
+  border: 2px solid var(--border-subtle-primary-default);
+  border-radius: var(--corner-radius-8px);
+  padding: var(--spacing-32px);
+}
+
+.visualizationTitle {
+  text-align: center;
+  margin-bottom: var(--spacing-24px);
+}
+
+.queueContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-24px);
+}
+
+.queueLabels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.labelLeft {
+  text-align: left;
+}
+
+.labelRight {
+  text-align: right;
+}
+
+.queueElements {
+  position: relative;
+}
+
+.elementsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8px);
+  min-height: var(--spacing-64px);
+}
+
+.emptyQueue {
+  width: var(--spacing-128px);
+  height: var(--spacing-64px);
+  border: 2px dashed var(--border-subtle-secondary-default);
+  border-radius: var(--corner-radius-8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.queueElement {
+  width: var(--spacing-64px);
+  height: var(--spacing-64px);
+  border-radius: var(--corner-radius-8px);
+  border: 2px solid var(--border-subtle-primary-default);
+  background-color: var(--bg-subtle-primary-default);
+  color: var(--text-emphasis-primary-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-700);
+  font-size: var(--font-size-18px);
+  transition: all 0.5s ease-in-out;
+}
+
+.queueElement.front {
+  border-color: var(--brand-500);
+  background-color: var(--bg-subtle-brand-default);
+  color: var(--text-emphasis-brand-default);
+}
+
+.queueElement.dequeuing {
+  border-color: var(--error-500);
+  background-color: var(--bg-subtle-error-default);
+  animation: pulse 1s infinite;
+}
+
+.animationElement {
+  width: var(--spacing-64px);
+  height: var(--spacing-64px);
+  border-radius: var(--corner-radius-8px);
+  border: 2px solid var(--success-500);
+  background-color: var(--bg-subtle-success-default);
+  color: var(--text-emphasis-success-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-700);
+  font-size: var(--font-size-18px);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.queueInfo {
+  display: flex;
+  gap: var(--spacing-32px);
+  text-align: center;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4px);
+}
+
+.legend {
+  margin-top: var(--spacing-32px);
+  background-color: var(--bg-subtle-secondary-default);
+  border-radius: var(--corner-radius-8px);
+  padding: var(--spacing-24px);
+}
+
+.legendTitle {
+  margin-bottom: var(--spacing-16px);
+}
+
+.legendGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16px);
+}
+
+@media (min-width: 768px) {
+  .legendGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8px);
+}
+
+.legendColor {
+  width: var(--spacing-16px);
+  height: var(--spacing-16px);
+  border-radius: var(--corner-radius-4px);
+  border: 2px solid;
+}
+
+.legendColor.front {
+  border-color: var(--brand-500);
+  background-color: var(--bg-subtle-brand-default);
+}
+
+.legendColor.enqueue {
+  border-color: var(--success-500);
+  background-color: var(--bg-subtle-success-default);
+}
+
+.legendColor.dequeue {
+  border-color: var(--error-500);
+  background-color: var(--bg-subtle-error-default);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-12px) var(--spacing-16px) var(--spacing-32px);
+  }
+  
+  .controls {
+    padding: var(--spacing-16px);
+  }
+  
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .inputField {
+    min-width: auto;
+  }
+  
+  .visualization {
+    padding: var(--spacing-16px);
+  }
+  
+  .queueInfo {
+    flex-direction: column;
+    gap: var(--spacing-16px);
+  }
+}

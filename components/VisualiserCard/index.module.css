@@ -1,0 +1,196 @@
+/* Card component styles with Grauity design tokens */
+
+.visualizerCard {
+  display: block;
+  padding: var(--spacing-16px);
+  border-radius: var(--corner-radius-12px);
+  border: 1px solid var(--border-subtle-primary-default);
+  background-color: var(--bg-subtle-primary-default);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.visualizerCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-subtle-primary-hover);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 0;
+}
+
+.visualizerCard:hover::before {
+  opacity: 1;
+}
+
+.visualizerCard:hover {
+  border-color: var(--border-subtle-secondary-default);
+  transform: translateY(-2px);
+}
+
+.visualizerCard:focus {
+  outline: 2px solid var(--border-emphasis-brand-default);
+  outline-offset: 2px;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-16px);
+}
+
+.cardInfo {
+  flex: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-18px);
+  font-weight: var(--font-weight-500);
+  color: var(--text-emphasis-primary-default);
+  margin: 0 0 var(--spacing-4px) 0;
+}
+
+.cardDescription {
+  font-family: var(--font-family);
+  font-size: var(--font-size-14px);
+  font-weight: var(--font-weight-400);
+  color: var(--text-emphasis-secondary-default);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cardIcon {
+  width: var(--spacing-40px);
+  height: var(--spacing-40px);
+  border-radius: var(--corner-radius-8px);
+  flex-shrink: 0;
+}
+
+.cardIcon.blue {
+  background: linear-gradient(135deg, rgba(6, 115, 249, 0.6) 0%, rgba(41, 137, 255, 0.6) 100%);
+  border: 1px solid rgba(6, 115, 249, 0.3);
+}
+
+.cardIcon.green {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.6) 0%, rgba(16, 185, 129, 0.6) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.cardIcon.pink {
+  background: linear-gradient(135deg, rgba(219, 39, 119, 0.6) 0%, rgba(99, 102, 241, 0.6) 100%);
+  border: 1px solid rgba(219, 39, 119, 0.3);
+}
+
+.cardIcon.purple {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.6) 0%, rgba(124, 58, 237, 0.6) 100%);
+  border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+.cardIcon.orange {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.6) 0%, rgba(239, 68, 68, 0.6) 100%);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.cardIcon.teal {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.6) 0%, rgba(6, 182, 212, 0.6) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.cardIcon.amber {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.6) 0%, rgba(249, 115, 22, 0.6) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.cardIcon.indigo {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.6) 0%, rgba(147, 51, 234, 0.6) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.cardIcon.rose {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.6) 0%, rgba(236, 72, 153, 0.6) 100%);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.cardIcon.slate {
+  background: linear-gradient(135deg, rgba(100, 116, 139, 0.6) 0%, rgba(107, 114, 128, 0.6) 100%);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.cardIcon.red {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.6) 0%, rgba(17, 24, 39, 0.6) 100%);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.cardIcon.emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.6) 0%, rgba(34, 197, 94, 0.6) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.cardIcon.yellow {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.6) 0%, rgba(245, 158, 11, 0.6) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8px);
+}
+
+.cardAction {
+  font-family: var(--font-family);
+  font-size: var(--font-size-14px);
+  font-weight: var(--font-weight-500);
+  color: var(--text-emphasis-brand-default);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8px);
+}
+
+.cardAction :global(.ns-icon) {
+  width: var(--spacing-16px);
+  height: var(--spacing-16px);
+  transition: transform 0.2s ease;
+}
+
+.visualizerCard:hover .cardAction :global(.ns-icon) {
+  transform: translateX(2px);
+}
+
+.comingSoon {
+  padding: var(--spacing-16px);
+  border-radius: var(--corner-radius-12px);
+  border: 1px solid var(--border-subtle-primary-default);
+  background-color: var(--bg-subtle-primary-default);
+  opacity: 0.8;
+}
+
+.comingSoonTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-18px);
+  font-weight: var(--font-weight-500);
+  color: var(--text-emphasis-primary-default);
+  margin: 0 0 var(--spacing-4px) 0;
+}
+
+.comingSoonDescription {
+  font-family: var(--font-family);
+  font-size: var(--font-size-14px);
+  font-weight: var(--font-weight-400);
+  color: var(--text-emphasis-secondary-default);
+  margin: 0;
+}

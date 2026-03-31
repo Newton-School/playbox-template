@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Queue",
+    "description": "A starter visualizer that demonstrates route setup, controls, theme usage, event tracking, and registry wiring.",
+    "href": "/queue",
+    "iconColor": "teal",
+    "status": "available"
+  }
+]

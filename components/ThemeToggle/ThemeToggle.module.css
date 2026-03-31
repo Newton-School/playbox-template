@@ -1,0 +1,67 @@
+/* Theme Toggle Component Styles */
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggleButton {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border-radius: var(--corner-radius-8px);
+}
+
+.toggleButton:hover {
+  transform: scale(1.05);
+}
+
+.toggleButton:active {
+  transform: scale(0.95);
+}
+
+.placeholder {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .toggleButton {
+    transform: scale(0.9);
+  }
+
+  .toggleButton:hover {
+    transform: scale(0.95);
+  }
+
+  .placeholder {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .toggleButton {
+    border: 2px solid var(--border-emphasis-primary-default);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .toggleButton {
+    transition: none;
+  }
+
+  .toggleButton:hover {
+    transform: none;
+  }
+
+  .toggleButton:active {
+    transform: none;
+  }
+}
