@@ -11,48 +11,6 @@
   padding: var(--spacing-40px) 0;
 }
 
-.hero {
-  background:
-    radial-gradient(
-      circle at top right,
-      color-mix(in srgb, var(--brand-500) 20%, transparent 80%) 0%,
-      transparent 36%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bg-subtle-primary-default) 92%, var(--brand-500) 8%) 0%,
-      var(--bg-subtle-primary-default) 100%
-    );
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--border-subtle-primary-default) 74%,
-      var(--brand-500) 26%
-    );
-  border-radius: var(--corner-radius-16px);
-  padding: var(--spacing-32px);
-}
-
-.heroCopy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-12px);
-  max-width: 760px;
-}
-
-.eyebrow {
-  color: var(--text-emphasis-brand-default);
-  font-family: var(--font-family);
-  font-size: var(--font-size-12px);
-  font-weight: var(--font-weight-600);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.heroDescription {
-  max-width: 640px;
-}
-
 .visualizersSection {
   display: flex;
   flex-direction: column;
@@ -69,10 +27,54 @@
   color: var(--text-emphasis-primary-default);
 }
 
+.sectionSummary {
+  color: var(--text-emphasis-secondary-default);
+}
+
 .visualizerGrid {
   display: grid;
   gap: var(--spacing-16px);
   grid-template-columns: 1fr;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8px);
+  border: 1px dashed var(--border-subtle-primary-default);
+  border-radius: var(--corner-radius-16px);
+  background:
+    radial-gradient(
+      circle at top right,
+      color-mix(in srgb, var(--brand-500) 12%, transparent 88%) 0%,
+      transparent 42%
+    ),
+    var(--bg-subtle-primary-default);
+  padding: var(--spacing-32px);
+}
+
+.emptyStateTitle {
+  color: var(--text-emphasis-primary-default);
+}
+
+.emptyStateDescription {
+  color: var(--text-emphasis-secondary-default);
+}
+
+.searchCta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10px);
+  padding: var(--spacing-16px) var(--spacing-20px);
+  border: 1px solid var(--border-subtle-primary-default);
+  border-radius: var(--corner-radius-12px);
+  background-color: var(--bg-subtle-secondary-default);
+  color: var(--text-emphasis-secondary-default);
+}
+
+.searchCta :global(.ns-icon) {
+  flex-shrink: 0;
+  color: var(--text-emphasis-brand-default);
 }
 
 @media (min-width: 640px) {
@@ -89,9 +91,5 @@
   .main {
     gap: var(--spacing-32px);
     padding: var(--spacing-24px) 0;
-  }
-
-  .hero {
-    padding: var(--spacing-24px);
   }
 }

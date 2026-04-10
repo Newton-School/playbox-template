@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { useTheme, Theme } from "../../hooks/useTheme";
 
 interface ThemeContextType {
@@ -24,16 +24,20 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const themeState = useTheme();
+  const { theme, toggleTheme, setTheme, mounted } = useTheme();
 
   useEffect(() => {
-    if (themeState.mounted) {
-      // Apply theme class to body
-      document.body.className = `grauity-theme-${themeState.theme}`;
+    if (mounted) {
+      document.body.className = `grauity-theme-${theme}`;
     }
-  }, [themeState.theme, themeState.mounted]);
+  }, [theme, mounted]);
+
+  const value = useMemo<ThemeContextType>(
+    () => ({ theme, toggleTheme, setTheme, mounted }),
+    [theme, toggleTheme, setTheme, mounted],
+  );
 
   return (
-    <ThemeContext.Provider value={themeState}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
