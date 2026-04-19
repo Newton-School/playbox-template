@@ -1,4 +1,4 @@
-/* QueueVisualizer CSS Module using Grauity design tokens */
+/* QueueVisualizer CSS Module — conveyor belt redesign */
 
 .container {
   margin: 0 auto;
@@ -37,64 +37,149 @@
   min-width: 12rem;
 }
 
-.visualization {
+/* Stage layout: service tray | belt | intake chute */
+.stage {
+  display: grid;
+  grid-template-columns: minmax(160px, 180px) 1fr minmax(160px, 180px);
+  align-items: stretch;
+  gap: var(--spacing-16px);
   background-color: var(--bg-subtle-primary-default);
   border: 2px solid var(--border-subtle-primary-default);
-  border-radius: var(--corner-radius-8px);
-  padding: var(--spacing-32px);
+  border-radius: var(--corner-radius-16px);
+  padding: var(--spacing-24px);
 }
 
-.visualizationTitle {
-  text-align: center;
-  margin-bottom: var(--spacing-24px);
-}
-
-.queueContainer {
+.zone {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-24px);
-}
-
-.queueLabels {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 32rem;
-}
-
-.labelLeft {
-  text-align: left;
-}
-
-.labelRight {
-  text-align: right;
-}
-
-.queueElements {
-  position: relative;
-}
-
-.elementsRow {
-  display: flex;
-  align-items: center;
   gap: var(--spacing-8px);
-  min-height: var(--spacing-64px);
+  align-items: stretch;
 }
 
-.emptyQueue {
-  width: var(--spacing-128px);
-  height: var(--spacing-64px);
-  border: 2px dashed var(--border-subtle-secondary-default);
-  border-radius: var(--corner-radius-8px);
+.zoneLabel {
+  border-radius: var(--corner-radius-4px);
+  padding: var(--spacing-4px) var(--spacing-8px);
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+.zoneLabelSuccess {
+  background-color: var(--bg-subtle-success-default);
+}
+
+.zoneLabelBrand {
+  background-color: var(--bg-subtle-brand-default);
+}
+
+.zoneSlot {
+  flex: 1;
+  min-height: var(--spacing-128px);
+  border-radius: var(--corner-radius-12px);
+  border: 2px dashed var(--border-subtle-primary-default);
+  background-color: var(--bg-subtle-secondary-default);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.queueElement {
-  width: var(--spacing-64px);
-  height: var(--spacing-64px);
+.zoneSlotSuccess {
+  border-color: var(--success-500);
+}
+
+.zoneSlotBrand {
+  border-color: var(--brand-500);
+}
+
+.zoneCaption {
+  text-align: center;
+}
+
+.chuteArrow {
+  color: var(--text-emphasis-brand-default);
+  font-size: var(--font-size-32px);
+  line-height: 1;
+}
+
+/* Belt */
+.beltWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8px);
+  position: relative;
+}
+
+.beltEnds {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-8px);
+  margin-bottom: calc(var(--spacing-8px) * -1);
+}
+
+.beltRoller {
+  width: var(--spacing-24px);
+  height: var(--spacing-24px);
+  border-radius: var(--corner-radius-50percent);
+  background-color: var(--bg-subtle-secondary-hover);
+  border: 2px solid var(--border-subtle-primary-default);
+  align-self: flex-end;
+  box-shadow: inset 0 -2px 0 var(--border-subtle-primary-default);
+}
+
+.belt {
+  position: relative;
+  min-height: 140px;
+  border-radius: var(--corner-radius-12px);
+  border: 2px solid var(--border-subtle-primary-default);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--bg-subtle-secondary-default) 0,
+    var(--bg-subtle-secondary-default) 14px,
+    var(--bg-subtle-secondary-hover) 14px,
+    var(--bg-subtle-secondary-hover) 28px
+  );
+  background-size: 40px 40px;
+  padding: var(--spacing-16px);
+  overflow: hidden;
+}
+
+.beltRunning {
+  animation: beltScroll 1.2s linear infinite;
+}
+
+@keyframes beltScroll {
+  from { background-position: 0 0; }
+  to   { background-position: -40px 0; }
+}
+
+.beltItems {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-12px);
+  min-height: var(--spacing-80px);
+  height: 100%;
+}
+
+.beltEmpty {
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-16px);
+}
+
+.beltCaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-8px);
+  letter-spacing: 0.04em;
+}
+
+/* Package (queue item) */
+.package {
+  width: var(--spacing-72px, 72px);
+  height: var(--spacing-72px, 72px);
   border-radius: var(--corner-radius-8px);
   border: 2px solid var(--border-subtle-primary-default);
   background-color: var(--bg-subtle-primary-default);
@@ -104,135 +189,109 @@
   justify-content: center;
   font-family: var(--font-family);
   font-weight: var(--font-weight-700);
-  font-size: var(--font-size-18px);
-  transition: all 0.5s ease-in-out;
+  font-size: var(--font-size-20px);
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.queueElement.front {
+.package::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed var(--border-subtle-primary-default);
+  border-radius: var(--corner-radius-4px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.packageFront {
   border-color: var(--brand-500);
   background-color: var(--bg-subtle-brand-default);
   color: var(--text-emphasis-brand-default);
 }
 
-.queueElement.dequeuing {
-  border-color: var(--error-500);
-  background-color: var(--bg-subtle-error-default);
-  animation: pulse 1s infinite;
+.packageFront::before {
+  border-color: var(--brand-500);
+  opacity: 0.7;
 }
 
-.animationElement {
-  width: var(--spacing-64px);
-  height: var(--spacing-64px);
-  border-radius: var(--corner-radius-8px);
-  border: 2px solid var(--success-500);
+.packageServed {
+  border-color: var(--success-500);
   background-color: var(--bg-subtle-success-default);
   color: var(--text-emphasis-success-default);
+}
+
+.packageServed::before {
+  border-color: var(--success-500);
+  opacity: 0.7;
+}
+
+/* Stats row */
+.statsRow {
+  margin-top: var(--spacing-24px);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-12px);
+  background-color: var(--bg-subtle-secondary-default);
+  border-radius: var(--corner-radius-8px);
+  padding: var(--spacing-16px);
+}
+
+.stat {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-700);
-  font-size: var(--font-size-18px);
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.queueInfo {
-  display: flex;
-  gap: var(--spacing-32px);
+  gap: var(--spacing-4px);
+  padding: var(--spacing-8px);
+  border-radius: var(--corner-radius-4px);
+  background-color: var(--bg-subtle-primary-default);
+  border: 1px solid var(--border-subtle-primary-default);
   text-align: center;
 }
 
-.infoItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-4px);
-}
+/* Responsive */
+@media (max-width: 900px) {
+  .stage {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'belt'
+      'intake'
+      'served';
+  }
 
-.legend {
-  margin-top: var(--spacing-32px);
-  background-color: var(--bg-subtle-secondary-default);
-  border-radius: var(--corner-radius-8px);
-  padding: var(--spacing-24px);
-}
+  .beltWrapper { grid-area: belt; }
+  .zone:first-child { grid-area: served; }
+  .zone:last-child { grid-area: intake; }
 
-.legendTitle {
-  margin-bottom: var(--spacing-16px);
-}
-
-.legendGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-16px);
-}
-
-@media (min-width: 768px) {
-  .legendGrid {
-    grid-template-columns: repeat(3, 1fr);
+  .zoneSlot {
+    min-height: var(--spacing-80px);
   }
 }
 
-.legendItem {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-8px);
-}
-
-.legendColor {
-  width: var(--spacing-16px);
-  height: var(--spacing-16px);
-  border-radius: var(--corner-radius-4px);
-  border: 2px solid;
-}
-
-.legendColor.front {
-  border-color: var(--brand-500);
-  background-color: var(--bg-subtle-brand-default);
-}
-
-.legendColor.enqueue {
-  border-color: var(--success-500);
-  background-color: var(--bg-subtle-success-default);
-}
-
-.legendColor.dequeue {
-  border-color: var(--error-500);
-  background-color: var(--bg-subtle-error-default);
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
     padding: var(--spacing-12px) var(--spacing-16px) var(--spacing-32px);
   }
-  
+
   .controls {
     padding: var(--spacing-16px);
   }
-  
+
   .controlsRow {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .inputField {
     min-width: auto;
   }
-  
-  .visualization {
+
+  .stage {
     padding: var(--spacing-16px);
   }
-  
-  .queueInfo {
-    flex-direction: column;
-    gap: var(--spacing-16px);
+
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
